@@ -24,8 +24,11 @@ class Client(Object, Methods):
             Email or username of the account.
         password (``str``):
             Password of the account.
+        preferred_audio_language (``str``, *optional*):
+            The audio language to use in Crunchyroll.
+            Default to 'ja-JP'
         locale (``str``, *optional*):
-            The language to use in Crunchyroll.
+            The locale to use in Crunchyroll.
             Default to 'en-US'
         device_id (``str``, *optional*):
             The uuid to use, in string form, e.g. '01234567-89AB-CDEF-0123-456789ABCDEF' where the 32 hexadecimal digits represent the UUID.
@@ -45,6 +48,7 @@ class Client(Object, Methods):
         *,
         email: str,
         password: str,
+        preferred_audio_language: str = "ja-JP",
         locale: str = "en-US",
         device_id: str = str(uuid4()),
         device_name: str = "My Phone",
@@ -53,6 +57,7 @@ class Client(Object, Methods):
     ) -> None:
         self.email: str = email
         self.password: str = password
+        self.preferred_audio_language: str = preferred_audio_language
         self.locale: str = locale
         self.device_id: str = device_id
         self.device_name: str = device_name
