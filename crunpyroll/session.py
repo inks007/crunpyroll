@@ -42,7 +42,7 @@ class Session:
             method="POST",
             endpoint="auth/v1/token",
             headers={
-                "Authorization": f"Basic {PUBLIC_TOKEN}"
+                "Authorization": f"Basic {self._client.public_token or PUBLIC_TOKEN}"
             },
             payload={
                 "username": self._client.email,
@@ -66,7 +66,7 @@ class Session:
             method="POST",
             endpoint="auth/v1/token",
             headers={
-                "Authorization": f"Basic {PUBLIC_TOKEN}"
+                "Authorization": f"Basic {self._client.public_token or PUBLIC_TOKEN}"
             },
             payload={
                 "refresh_token": self.refresh_token,
