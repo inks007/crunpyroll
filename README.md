@@ -17,7 +17,7 @@
 #### Installation ⚙️
 ```bash
 # Using Git
-pip install -U git+https://github.com/stefanodvx/crunpyroll
+pip install -U git+https://github.com/Pixel-LH/crunpyroll
 
 # Using PyPi (Recommended)
 pip install -U crunpyroll
