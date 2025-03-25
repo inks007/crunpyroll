@@ -5,13 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="crunpyroll",
-    version="2.4.5",
+    version="2.4.6",
     author="stefanodvx",
     author_email="pp.stefanodvx@gmail.com",
     description="Async API wrapper for Crunchyroll",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/stefanodvx/crunpyroll",
+    url="https://github.com/Pixel-LH/crunpyroll.git",
     project_urls={
         "Tracker": "https://github.com/stefanodvx/crunpyroll/issues",
     },

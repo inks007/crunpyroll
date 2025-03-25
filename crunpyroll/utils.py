@@ -17,7 +17,7 @@ def get_api_headers(headers: Optional[Dict]) -> Dict:
     return {
         "Connection": "Keep-Alive",
         "Content-Type": "application/x-www-form-urlencoded",
-        "User-Agent": f"Crunchyroll/{APP_VERSION} Android/13 okhttp/4.12.0"
+        "User-Agent": f"Crunchyroll/4.71.0 (bundle_identifier:com.crunchyroll.iphone; build_number:4052956.474096152) iOS/18.3.2 Gravity/4.71.0"
     } | (headers or {})
 
 def parse_segments(repr: Dict, template: Dict) -> List[str]:

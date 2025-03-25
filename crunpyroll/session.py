@@ -28,7 +28,7 @@ class Session:
     
     @property
     def authorization_header(self):
-        return {"Authorization": f"Bearer {self.access_token}"}
+        return {"Authorization": f"Bearer {self.access_token}","User-Agent":'Crunchyroll/4.71.0 (bundle_identifier:com.crunchyroll.iphone; build_number:4052956.474096152) iOS/18.3.2 Gravity/4.71.0'}
     
     async def retrieve(self) -> None:
         if not self.is_authorized:
