@@ -6,8 +6,8 @@ PUBLIC_TOKEN = "dC1rZGdwMmg4YzNqdWI4Zm4wZnE6eWZMRGZNZnJZdktYaDRKWFMxTEVJMmNDcXUx
 
 APP_VERSION = "3.59.0"
 
-DEVICE_NAME = "RMX2170"
-DEVICE_TYPE = "realme RMX2170"
+DEVICE_NAME = "iPhone"
+DEVICE_TYPE = "iPhone 14"
 DEVICE_ID = str(uuid4())
 
 WIDEVINE_UUID = "urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed"
@@ -16,7 +16,7 @@ PLAYREADY_UUID = "urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95"
 def get_api_headers(headers: Optional[Dict]) -> Dict:
     return {
         "Connection": "Keep-Alive",
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
         "User-Agent": f"Crunchyroll/4.71.0 (bundle_identifier:com.crunchyroll.iphone; build_number:4052956.474096152) iOS/18.3.2 Gravity/4.71.0"
     } | (headers or {})
 

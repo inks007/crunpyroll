@@ -66,7 +66,7 @@ class Client(Object, Methods):
         self.device_type: str = device_type
         self.public_token = public_token
 
-        self.http = httpx.AsyncClient(proxies=proxies, timeout=15)
+        self.http = httpx.AsyncClient(proxy=proxies, timeout=15)
         self.session = Session(self)
 
     async def start(self):
