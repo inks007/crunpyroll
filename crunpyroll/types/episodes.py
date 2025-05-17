@@ -1,3 +1,5 @@
+from curses.ascii import isdigit
+
 from .obj import Object
 from .content import Content
 from .images import Images
@@ -130,7 +132,10 @@ class Episode(Content):
         self.id: str = data.get("id")
         self.title: str = data.get("title")
         self.slug: str = data.get("slug_title")
-        self.episode_number: int = data.get("episode_number")
+        if data.get("episode_number") is None and isdigit(data.get("episode")):
+            self.episode_number: int = int(data.get("episode"))
+        else:
+            self.episode_number: int = data.get("episode_number")
         self.duration: int = data.get("duration_ms")
         self.free_available_date: datetime = str_to_date(data.get("free_available_date"))
         self.premium_available_date: datetime = str_to_date(data.get("premium_available_date"))
