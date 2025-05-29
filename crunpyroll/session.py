@@ -2,6 +2,7 @@ import base64
 import re
 from datetime import datetime, timedelta
 
+from .enums import APIHost
 from .utils import (
     get_date,get_api_headers
 )
@@ -29,7 +30,7 @@ class Session:
     
     @property
     def authorization_header(self):
-        return {"Authorization": f"Bearer {self.access_token}","User-Agent":'Crunchyroll/4.71.0 (bundle_identifier:com.crunchyroll.iphone; build_number:4052956.474096152) iOS/18.3.2 Gravity/4.71.0'}
+        return {"Authorization": f"Bearer {self.access_token}","User-Agent":'Crunchyroll/4.77.3 (bundle_identifier:com.crunchyroll.iphone; build_number:4148147.285670380) iOS/18.3.2 Gravity/4.77.3'}
     
     async def retrieve(self) -> None:
         if not self.is_authorized:
@@ -86,7 +87,8 @@ class Session:
                 "device_id": self._client.device_id,
                 "device_name": self._client.device_name,
                 "device_type": self._client.device_type
-            }, include_session=False
+            }, include_session=False,host=APIHost.WEB
+
         )
         self.access_token = response.get("access_token")
         self.refresh_token = response.get("refresh_token")
