@@ -1,8 +1,6 @@
 import base64
 import re
 from datetime import datetime, timedelta
-
-from .enums import APIHost
 from .utils import (
     get_date,get_api_headers
 )
@@ -87,7 +85,7 @@ class Session:
                 "device_id": self._client.device_id,
                 "device_name": self._client.device_name,
                 "device_type": self._client.device_type
-            }, include_session=False,host=APIHost.WEB
+            }, include_session=False
 
         )
         self.access_token = response.get("access_token")
