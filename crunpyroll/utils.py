@@ -17,7 +17,6 @@ def get_api_headers(headers: Optional[Dict]) -> Dict:
     return {
         "Connection": "Keep-Alive",
         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-        "User-Agent": f"Crunchyroll/4.71.0 (bundle_identifier:com.crunchyroll.iphone; build_number:4052956.474096152) iOS/18.3.2 Gravity/4.71.0"
         "User-Agent": f"Crunchyroll/4.77.3 (bundle_identifier:com.crunchyroll.iphone; build_number:4148147.285670380) iOS/18.3.2 Gravity/4.77.3",
     } | (headers or {})
 
