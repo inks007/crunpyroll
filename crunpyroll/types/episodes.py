@@ -132,12 +132,16 @@ class Episode(Content):
         self.id: str = data.get("id")
         self.title: str = data.get("title")
         self.slug: str = data.get("slug_title")
-        if data.get("episode") is not None and data.get("episode_number") != "":
-            if isdigit(data.get("episode")):
-                self.episode_number: int = int(data.get("episode"))
+        print(f"episode： {data.get('episode')}, episode_number: {data.get('episode_number')}")
+        try:
+            if data.get("episode") is not None and data.get("episode_number") != "":
+                if isdigit(data.get("episode")):
+                    self.episode_number: int = int(data.get("episode"))
+                else:
+                    self.episode_number: int = data.get("episode_number")
             else:
                 self.episode_number: int = data.get("episode_number")
-        else:
+        except Exception:
             self.episode_number: int = data.get("episode_number")
         self.duration: int = data.get("duration_ms")
         self.free_available_date: datetime = str_to_date(data.get("free_available_date"))
