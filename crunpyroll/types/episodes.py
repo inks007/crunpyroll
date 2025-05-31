@@ -132,7 +132,7 @@ class Episode(Content):
         self.id: str = data.get("id")
         self.title: str = data.get("title")
         self.slug: str = data.get("slug_title")
-        if data.get("episode_number") is None and isdigit(data.get("episode")):
+        if data.get("episode_number") is None and isdigit(data.get("episode", "")):
             self.episode_number: int = int(data.get("episode"))
         else:
             self.episode_number: int = data.get("episode_number")
