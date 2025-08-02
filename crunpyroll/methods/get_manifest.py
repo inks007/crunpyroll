@@ -21,4 +21,7 @@ class GetManifest:
         """
         await self.session.retrieve()
         response = await self.manifest_request(url)
-        return types.Manifest.parse(response)
+        try:
+            return types.Manifest.parse(response)
+        except Exception:
+            return types.Manifest.new_parse(response)
