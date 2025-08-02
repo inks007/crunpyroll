@@ -1,11 +1,11 @@
-import setuptools
+from setuptools import setup, find_packages
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-setuptools.setup(
+setup(
     name="crunpyroll",
-    version="2.4.8.1",
+    version="2.4.8.2",
     author="stefanodvx",
     author_email="pp.stefanodvx@gmail.com",
     description="Async API wrapper for Crunchyroll",
@@ -16,6 +16,6 @@ setuptools.setup(
         "Tracker": "https://github.com/Pixel-LH/crunpyroll/issues",
     },
     install_requires=["httpx", "xmltodict"],
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     python_requires=">=3.7",
 )
