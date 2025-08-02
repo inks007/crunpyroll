@@ -29,7 +29,7 @@ class GetStreams:
             method="GET",
             endpoint="v1/" + media_id + "/tv/vidaa/play",
             params={
-                "locale": locale or self.locale,
+                "locale": locale or self.preferred_audio_language,
                 "queue": False
             },
             host=enums.APIHost.PLAY_SERVICE

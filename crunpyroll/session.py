@@ -1,5 +1,6 @@
 import base64
 import re
+import traceback
 from datetime import datetime, timedelta
 from .utils import (
     get_date,get_api_headers
@@ -66,7 +67,7 @@ class Session:
             return base64_token
         except Exception as e:
             # 6. 添加错误日志
-            print(f"Failed to get production token: {str(e)}")
+            print(f"Failed to get production token: {traceback.format_exc()}")
             return None
 
     
