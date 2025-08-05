@@ -1,5 +1,8 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = [
+    "setuptools>=61.0,<70.0",
+    "wheel>=0.37.0"
+]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +10,7 @@ name = "crunpyroll"
 version = "2.4.8.2"
 description = "Async API wrapper for Crunchyroll"
 readme = "README.md"
-license = "MIT"
+license = {text = "MIT"}
 authors = [
     {name = "stefanodvx", email = "pp.stefanodvx@gmail.com"}
 ]

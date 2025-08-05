@@ -1,0 +1,47 @@
+# Test Dockerfile to reproduce the installation issue
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Update package lists and install git
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy our installation script
+COPY install_docker.py /app/
+
+# Set environment variables to avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PIP_NO_CACHE_DIR=1
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Create a test script to try different installation methods
+RUN echo '#!/bin/bash\n\
+echo "=== Testing crunpyroll installation in Docker ==="\n\
+echo "Python version: $(python --version)"\n\
+echo "Pip version: $(pip --version)"\n\
+echo "Setuptools version: $(python -c \"import setuptools; print(setuptools.__version__)\")"\n\
+echo ""\n\
+echo "=== Method 1: Direct pip install ==="\n\
+pip install -U git+https://github.com/Pixel-LH/crunpyroll || echo "Method 1 failed"\n\
+echo ""\n\
+echo "=== Method 2: Using our Docker installation script ==="\n\
+python install_docker.py || echo "Method 2 failed"\n\
+echo ""\n\
+echo "=== Method 3: Manual setuptools upgrade + install ==="\n\
+pip install "setuptools>=61.0,<70.0" "wheel>=0.37.0" && \\\n\
+pip install --use-pep517 --no-build-isolation git+https://github.com/Pixel-LH/crunpyroll || echo "Method 3 failed"\n\
+echo ""\n\
+echo "=== Method 4: Legacy setup.py method ==="\n\
+pip install --no-use-pep517 git+https://github.com/Pixel-LH/crunpyroll || echo "Method 4 failed"\n\
+echo ""\n\
+echo "=== Verification ==="\n\
+python -c "import crunpyroll; print(\"✅ crunpyroll imported successfully\")" || echo "❌ Import failed"\n\
+pip show crunpyroll || echo "❌ Package not found"\n\
+' > /app/test_install.sh && chmod +x /app/test_install.sh
+
+# Default command
+CMD ["/app/test_install.sh"]
