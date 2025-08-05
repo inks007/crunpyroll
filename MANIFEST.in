@@ -1,0 +1,21 @@
+# Include the README and license files
+include README.md
+include LICENSE
+
+# Include the pyproject.toml configuration
+include pyproject.toml
+
+# Include all Python files in the package
+recursive-include crunpyroll *.py
+recursive-include crunpyroll *.typed
+
+# Exclude test files and cache
+recursive-exclude test *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+# Exclude development files
+exclude .gitignore
+recursive-exclude .git *
+recursive-exclude docs *
+recursive-exclude .idea *

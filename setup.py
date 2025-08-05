@@ -1,21 +1,11 @@
-from setuptools import setup, find_packages
+#!/usr/bin/env python3
+"""
+Minimal setup.py for backward compatibility.
+All configuration is now in pyproject.toml.
+"""
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+from setuptools import setup
 
-setup(
-    name="crunpyroll",
-    version="2.4.8.2",
-    author="stefanodvx",
-    author_email="pp.stefanodvx@gmail.com",
-    description="Async API wrapper for Crunchyroll",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/Pixel-LH/crunpyroll.git",
-    project_urls={
-        "Tracker": "https://github.com/Pixel-LH/crunpyroll/issues",
-    },
-    install_requires=["httpx", "xmltodict"],
-    packages=find_packages(),
-    python_requires=">=3.7",
-)
+# Minimal setup.py for backward compatibility
+# All package configuration is now in pyproject.toml
+setup()

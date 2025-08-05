@@ -1,0 +1,99 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crunpyroll"
+version = "2.4.8.2"
+description = "Async API wrapper for Crunchyroll"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "stefanodvx", email = "pp.stefanodvx@gmail.com"}
+]
+maintainers = [
+    {name = "Pixel-LH"}
+]
+keywords = ["crunchyroll", "api", "async", "wrapper", "anime", "streaming"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Multimedia :: Video",
+    "Framework :: AsyncIO",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "httpx",
+    "xmltodict",
+]
+
+[project.optional-dependencies]
+docs = [
+    "sphinx",
+    "furo",
+    "pygments",
+    "sphinx_copybutton",
+    "sphinx-autobuild",
+]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "black",
+    "isort",
+    "flake8",
+]
+
+[project.urls]
+Homepage = "https://github.com/Pixel-LH/crunpyroll"
+Repository = "https://github.com/Pixel-LH/crunpyroll.git"
+Documentation = "https://crunpyroll.readthedocs.io/"
+"Bug Tracker" = "https://github.com/Pixel-LH/crunpyroll/issues"
+
+[tool.setuptools]
+packages = {find = {where = ["."], include = ["crunpyroll*"], exclude = ["test*", "docs*"]}}
+include-package-data = true
+
+[tool.setuptools.package-data]
+crunpyroll = ["py.typed"]
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["crunpyroll"]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
