@@ -26,7 +26,7 @@ except (FileNotFoundError, UnicodeDecodeError):
 # Fallback setup configuration
 setup(
     name="crunpyroll",
-    version="2.4.8.2",
+    version="2.4.8.3",
     author="stefanodvx",
     author_email="pp.stefanodvx@gmail.com",
     description="Async API wrapper for Crunchyroll",
