@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "crunpyroll"
-version = "2.4.8.2"
+dynamic = ["version"]
 description = "Async API wrapper for Crunchyroll"
 readme = "README.md"
 license = {text = "MIT"}
@@ -66,6 +66,9 @@ Documentation = "https://crunpyroll.readthedocs.io/"
 [tool.setuptools]
 packages = {find = {where = ["."], include = ["crunpyroll*"], exclude = ["test*", "docs*"]}}
 include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "crunpyroll.__version__"}
 
 [tool.setuptools.package-data]
 crunpyroll = ["py.typed"]

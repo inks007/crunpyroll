@@ -1,9 +1,7 @@
 Metadata-Version: 2.1
 Name: crunpyroll
-Version: 2.4.8.2
+Version: 2.4.8.3
 Summary: Async API wrapper for Crunchyroll
-Home-page: https://github.com/Pixel-LH/crunpyroll
-Author: stefanodvx
 Author-email: stefanodvx <pp.stefanodvx@gmail.com>
 Maintainer: Pixel-LH
 License: MIT

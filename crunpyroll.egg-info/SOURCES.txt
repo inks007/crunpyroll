@@ -12,7 +12,6 @@ crunpyroll/utils.py
 crunpyroll.egg-info/PKG-INFO
 crunpyroll.egg-info/SOURCES.txt
 crunpyroll.egg-info/dependency_links.txt
-crunpyroll.egg-info/not-zip-safe
 crunpyroll.egg-info/requires.txt
 crunpyroll.egg-info/top_level.txt
 crunpyroll/enums/__init__.py
