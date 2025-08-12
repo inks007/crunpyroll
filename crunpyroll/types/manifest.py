@@ -70,7 +70,7 @@ class Manifest(Object):
                         data["content_protection"]["playready"] = {}
                         data["content_protection"]["playready"]["pssh"] = drm["mspr:pro"]
 
-                    mime_type = aset.get("@mimeType")
+                    mime_type = aset.get("@mimeType") or aset.get("@mime_Type") or aset.get("@mime_type")
                     representation = aset["Representation"]
                     if "video" in mime_type:
                         for repr in representation:
