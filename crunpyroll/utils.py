@@ -1,5 +1,6 @@
 from typing import Optional, List, Dict
 from datetime import datetime
+from unittest import installHandler
 from uuid import uuid4
 
 PUBLIC_TOKEN = "dC1rZGdwMmg4YzNqdWI4Zm4wZnE6eWZMRGZNZnJZdktYaDRKWFMxTEVJMmNDcXUxdjVXYW4="
@@ -31,9 +32,11 @@ def parse_segments(repr: Dict, template: Dict) -> List[str]:
         obj={"RepresentationID": representation_id}
     )
     segments.append(initialization_url)
-    for segment in template["SegmentTimeline"]["S"]:
-        repeat = int(segment.get("@r", 0)) + 1
-        duration = int(segment.get("@d"))
+    #print(f"template: {template}")
+    templates = template["SegmentTimeline"]["S"]
+    if not isinstance(templates, list):
+        repeat = int(templates.get("@r", 0)) + 1
+        duration = int(templates.get("@d"))
         time += repeat * duration
         for _ in range(repeat):
             number = start_number + len(segments) - 1
@@ -45,6 +48,25 @@ def parse_segments(repr: Dict, template: Dict) -> List[str]:
                 }
             )
             segments.append(segment_url)
+    else:
+        for segment in template["SegmentTimeline"]["S"]:
+            try:
+                repeat = int(segment.get("@r", 0)) + 1
+                duration = int(segment.get("@d"))
+                time += repeat * duration
+                for _ in range(repeat):
+                    number = start_number + len(segments) - 1
+                    segment_url = format_segment_url(
+                        url=base_url + template["@media"],
+                        obj={
+                            "Number": str(number),
+                            "RepresentationID": representation_id
+                        }
+                    )
+                    segments.append(segment_url)
+            except Exception as e:
+                print(f"segment: {segment} | Error: {e}")
+                raise e
     return segments
 
 def format_segment_url(url: str, obj: Dict) -> str:
