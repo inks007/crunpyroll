@@ -3,7 +3,7 @@ from datetime import datetime
 from unittest import installHandler
 from uuid import uuid4
 
-PUBLIC_TOKEN = "dC1rZGdwMmg4YzNqdWI4Zm4wZnE6eWZMRGZNZnJZdktYaDRKWFMxTEVJMmNDcXUxdjVXYW4="
+PUBLIC_TOKEN = "Ym1icmt4eXgzZDd1NmpzZnlsYTQ6QUlONEQ1VkVfY3Awd1Z6Zk5vUDBZcUhVcllGcDloU2c="
 
 APP_VERSION = "3.59.0"
 
@@ -18,7 +18,7 @@ def get_api_headers(headers: Optional[Dict]) -> Dict:
     return {
         "Connection": "Keep-Alive",
         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-        "User-Agent": f"Crunchyroll/4.77.3 (bundle_identifier:com.crunchyroll.iphone; build_number:4148147.285670380) iOS/18.3.2 Gravity/4.77.3",
+        "User-Agent": "Crunchyroll/ANDROIDTV/3.42.1_22267 (Android 16; en-US; sdk_gphone64_x86_64)",
     } | (headers or {})
 
 def parse_segments(repr: Dict, template: Dict) -> List[str]:

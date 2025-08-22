@@ -3,7 +3,7 @@ import re
 import traceback
 from datetime import datetime, timedelta
 from .utils import (
-    get_date,get_api_headers
+    PUBLIC_TOKEN, get_date,get_api_headers
 )
 
 from .errors import ClientNotAuthorized
@@ -29,7 +29,9 @@ class Session:
     
     @property
     def authorization_header(self):
-        return {"Authorization": f"Bearer {self.access_token}","User-Agent":'Crunchyroll/4.77.3 (bundle_identifier:com.crunchyroll.iphone; build_number:4148147.285670380) iOS/18.3.2 Gravity/4.77.3'}
+        return {"Authorization": f"Bearer {self.access_token}",
+                "User-Agent":'Crunchyroll/ANDROIDTV/3.42.1_22267 (Android 16; en-US; sdk_gphone64_x86_64)',
+                "Cookie":f'etp_rt={self.refresh_token}'}
     
     async def retrieve(self) -> None:
         if not self.is_authorized:
@@ -76,7 +78,7 @@ class Session:
             method="POST",
             endpoint="auth/v1/token",
             headers={
-                "Authorization": f"Basic {await self.get_public_token()}"
+                "Authorization": f"Basic {PUBLIC_TOKEN}"
             },
             payload={
                 "username": self._client.email,
@@ -101,7 +103,7 @@ class Session:
             method="POST",
             endpoint="auth/v1/token",
             headers={
-                "Authorization": f"Basic {await self.get_public_token()}"
+                "Authorization": f"Basic {PUBLIC_TOKEN}"
             },
             payload={
                 "refresh_token": self.refresh_token,

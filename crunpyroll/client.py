@@ -109,6 +109,7 @@ class Client(Object, Methods):
         api_headers = get_api_headers(headers)
         if self.session.is_authorized and include_session:
             api_headers.update(self.session.authorization_header)
+        #print(f"Requesting {method} {url} with params {params}")
         response = await self.http.request(
             method=method,
             url=url,
@@ -116,6 +117,15 @@ class Client(Object, Methods):
             headers=api_headers,
             data=payload
         )
+        if response.status_code == 401:
+            await self.session.refresh()
+            response = await self.http.request(
+            method=method,
+            url=url,
+            params=params,
+            headers=api_headers,
+            data=payload
+            )
         return Client.parse_response(response, method=method)
     
     async def manifest_request(
