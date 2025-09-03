@@ -41,36 +41,39 @@ class Session:
             await self.refresh()
 
     async def get_public_token(self) -> Optional[str]:
+        
+        return PUBLIC_TOKEN
+        
         # 1. 修正API地址拼写错误
-        api_url = "https://static.crunchyroll.com/vilos-v2/web/vilos/js/bundle.js"
+        # api_url = "https://static.crunchyroll.com/vilos-v2/web/vilos/js/bundle.js"
 
-        try:
-            # 2. 更明确的HTTP客户端调用
-            response = await self._client.http.get(
-                url=api_url,
-                headers=get_api_headers(headers=None)
-            )
-            response.raise_for_status()  # 自动处理非200状态码
+        # try:
+        #     # 2. 更明确的HTTP客户端调用
+        #     response = await self._client.http.get(
+        #         url=api_url,
+        #         headers=get_api_headers(headers=None)
+        #     )
+        #     response.raise_for_status()  # 自动处理非200状态码
 
-            # 3. 确保获取文本内容（部分库需要 await response.text()）
-            raw_js = response.text
+        #     # 3. 确保获取文本内容（部分库需要 await response.text()）
+        #     raw_js = response.text
 
-            # 4. 修正正则表达式（移除多余斜杠）
-            token_pattern = r'prod="([\w-]+:[\w-]+)"'
-            token_match = re.search(token_pattern, raw_js)
+        #     # 4. 修正正则表达式（移除多余斜杠）
+        #     token_pattern = r'prod="([\w-]+:[\w-]+)"'
+        #     token_match = re.search(token_pattern, raw_js)
 
-            if not token_match:
-                return None
-            # 5. 更安全的编码处理
-            raw_token = token_match.group(1)
-            latin1_bytes = raw_token.encode("latin1")
-            base64_token = base64.b64encode(latin1_bytes).decode("utf-8")
+        #     if not token_match:
+        #         return None
+        #     # 5. 更安全的编码处理
+        #     raw_token = token_match.group(1)
+        #     latin1_bytes = raw_token.encode("latin1")
+        #     base64_token = base64.b64encode(latin1_bytes).decode("utf-8")
 
-            return base64_token
-        except Exception as e:
-            # 6. 添加错误日志
-            print(f"Failed to get production token: {traceback.format_exc()}")
-            return None
+        #     return base64_token
+        # except Exception as e:
+        #     # 6. 添加错误日志
+        #     print(f"Failed to get production token: {traceback.format_exc()}")
+        #     return None
 
     
     async def authorize(self) -> Optional[bool]:
