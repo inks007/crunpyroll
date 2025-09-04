@@ -10,7 +10,7 @@ APP_VERSION = "3.59.0"
 DEVICE_NAME = "iPhone"
 DEVICE_TYPE = "iPhone 14"
 DEVICE_ID = str(uuid4())
-
+USER_AGENT = "Crunchyroll/ANDROIDTV/3.42.1_22267 (Android 16; en-US; sdk_gphone64_x86_64)"
 WIDEVINE_UUID = "urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed"
 PLAYREADY_UUID = "urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95"
 
@@ -18,7 +18,7 @@ def get_api_headers(headers: Optional[Dict]) -> Dict:
     return {
         "Connection": "Keep-Alive",
         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-        "User-Agent": "Crunchyroll/ANDROIDTV/3.42.1_22267 (Android 16; en-US; sdk_gphone64_x86_64)",
+        "User-Agent": USER_AGENT,
     } | (headers or {})
 
 def parse_segments(repr: Dict, template: Dict) -> List[str]:

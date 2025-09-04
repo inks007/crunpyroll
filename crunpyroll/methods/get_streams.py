@@ -2,6 +2,7 @@ from crunpyroll import types
 from crunpyroll import enums
 
 import crunpyroll
+from crunpyroll.errors import CrunpyrollException
 
 class GetStreams:
     async def get_streams(
@@ -27,7 +28,7 @@ class GetStreams:
         await self.session.retrieve()
         response = await self.api_request(
             method="GET",
-            endpoint="v1/" + media_id + "/tv/vidaa/play",
+            endpoint="v1/" + media_id + "/ios/iphone/download",
             params={
                 "locale": locale or self.preferred_audio_language,
                 "queue": False
@@ -35,3 +36,4 @@ class GetStreams:
             host=enums.APIHost.PLAY_SERVICE
         )
         return types.MediaStreams.parse(response, media_id)
+            
