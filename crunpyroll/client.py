@@ -66,7 +66,7 @@ class Client(Object, Methods):
         self.device_type: str = device_type
         self.public_token = public_token
 
-        self.http = httpx.AsyncClient(proxy=proxies, timeout=15)
+        self.http = httpx.AsyncClient(timeout=15)
         self.session = Session(self)
 
     async def start(self):
@@ -109,7 +109,7 @@ class Client(Object, Methods):
         api_headers = get_api_headers(headers)
         if self.session.is_authorized and include_session:
             api_headers.update(self.session.authorization_header)
-        #print(f"Requesting {method} {url} with params {params}")
+        print(f"Requesting {method} {url}\n")
         response = await self.http.request(
             method=method,
             url=url,

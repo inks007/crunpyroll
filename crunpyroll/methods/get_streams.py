@@ -28,7 +28,7 @@ class GetStreams:
         await self.session.retrieve()
         response = await self.api_request(
             method="GET",
-            endpoint="v1/" + media_id + "/ios/iphone/download",
+            endpoint="v1/" + media_id + "/tv/android_tv/play",
             params={
                 "locale": locale or self.preferred_audio_language,
                 "queue": False
