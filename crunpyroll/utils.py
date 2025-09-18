@@ -2,6 +2,7 @@ from typing import Optional, List, Dict
 from datetime import datetime
 from unittest import installHandler
 from uuid import uuid4
+import re
 
 PUBLIC_TOKEN = "cHVnMG43eW11YW9sa2tnaTNsYmo6WGlraXNhQ2FYRllCY1hxb09sa1NUMWg2b1pYbHdESk4="
 
@@ -25,6 +26,14 @@ def parse_segments(repr: Dict, template: Dict) -> List[str]:
     time = 0
     segments = []
     base_url = repr["BaseURL"]
+    zfill_pattern = r'\$Number%0(\d)d\$'
+    zfill_search = re.search(zfill_pattern, template["@media"])
+    if zfill_search is None:
+        media_url = template["@media"]
+        zfill_amount = 0
+    else:
+        media_url = re.sub(zfill_pattern, "$Number$", template["@media"])
+        zfill_amount = int(zfill_search.group(1))
     representation_id = repr["@id"]
     start_number = int(template["@startNumber"])
     initialization_url = format_segment_url(
@@ -41,9 +50,9 @@ def parse_segments(repr: Dict, template: Dict) -> List[str]:
         for _ in range(repeat):
             number = start_number + len(segments) - 1
             segment_url = format_segment_url(
-                url=base_url + template["@media"],
+                url=base_url + media_url,
                 obj={
-                    "Number": str(number),
+                    "Number": str(number).zfill(zfill_amount),
                     "RepresentationID": representation_id
                 }
             )
@@ -57,9 +66,9 @@ def parse_segments(repr: Dict, template: Dict) -> List[str]:
                 for _ in range(repeat):
                     number = start_number + len(segments) - 1
                     segment_url = format_segment_url(
-                        url=base_url + template["@media"],
+                        url=base_url + media_url,
                         obj={
-                            "Number": str(number),
+                            "Number": str(number).zfill(zfill_amount),
                             "RepresentationID": representation_id
                         }
                     )
